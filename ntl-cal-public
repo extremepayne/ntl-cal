@@ -1,0 +1,14 @@
+#!/bin/bash
+month=`date +%b`
+day=`date +%d`
+my_path="/home/user/ntl-cal/$month/$day"
+contents=$( /usr/bin/cat "$my_path" )
+while IFS= read -r line; do
+  if [[ "${line:0:3}" = "Ntl" ]]; then
+    echo "\e[34m$line"
+  elif [[ "${line:0:5}" = "World" || "${line:0:8}" = "Interntl" ]]; then
+    echo "\e[35m$line"
+  else
+    echo "\e[32m$line"
+  fi
+done <<< "$contents"

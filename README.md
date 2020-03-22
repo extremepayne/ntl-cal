@@ -1,10 +1,16 @@
 # ntl-cal
 Calendar of International and National (US) holidays, scraped from a website.
+
 ## About
 Each folder is named after the short name of the month (`strftime %b`). 
 Within each folder are files named for each day, no extension. 
 Each file contains newline-deliniated holiday names, in no particular order, 
 with National abbreviated as Ntl.
+
+`ntl-cal-public` will display, colored, the holidays for today. 
+Replace `user` with your username, and update the path if nessecary. 
+Then you can alias in your `.*shrc`. Don't forget to make the file executable with `chmmod +x`. 
+Mine is aliased to `holiday`.
 
 Scraped from: http://www.nationalcalendarapp.com/
 
@@ -30,6 +36,3 @@ You need the `-k` flag because said site has an invalid cert. (Be careful, I gue
 
 Produces empty files for 31 in some months, for 29 and 30 as well in Feburary. 
 These files have no effect so I didn't remove them.
-
-## Why
-For some scripts I made. Might upload them sometime.
