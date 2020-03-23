@@ -9,7 +9,8 @@ with National abbreviated as Ntl.
 
 `ntl-cal-public` will display, colored, the holidays for today. 
 Replace `user` with your username, and update the path if nessecary. 
-Then you can alias in your `.*shrc`. Don't forget to make the file executable with `chmmod +x`. 
+Then you can alias in your `.*shrc`, or move it to somewhere on your `$PATH`. 
+Don't forget to make the file executable with `chmmod +x`. 
 Mine is aliased to `holiday`.
 
 Scraped from: http://www.nationalcalendarapp.com/
