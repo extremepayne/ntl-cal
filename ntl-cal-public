@@ -1,14 +1,57 @@
 #!/bin/bash
-month=`date +%b`
-day=`date +%d`
-my_path="/home/user/ntl-cal/$month/$day"
-contents=$( /usr/bin/cat "$my_path" )
-while IFS= read -r line; do
-  if [[ "${line:0:3}" = "Ntl" ]]; then
-    echo "\e[34m$line"
-  elif [[ "${line:0:5}" = "World" || "${line:0:8}" = "Interntl" ]]; then
-    echo "\e[35m$line"
+read_colorized () {
+  while IFS= read -r line; do
+    if [[ "${line:0:3}" = "Ntl" ]]; then
+      echo "\e[34m$line"
+    elif [[ "${line:0:5}" = "World" || "${line:0:8}" = "Interntl" ]]; then
+      echo "\e[35m$line"
+    else
+      echo "\e[32m$line"
+    fi
+  done <<< "$1"
+}
+if [[ $# -eq 0 ]]; then
+  month=`date +%b`
+  day=`date +%d`
+  my_path="/home/user/ntl-cal/$month/$day"
+  contents=$( /usr/bin/cat "$my_path" )
+  read_colorized "$contents"
+elif [[ $1 = "-d" ]]; then
+  if [[ $2 != "" ]]; then
+    month=`date -d "$2" +%b`
+    day=`date -d "$2" +%d`
+    if [[ $3 = "-m" ]]; then
+      my_path="/home/user/ntl-cal/$month/month.txt"
+    else
+      my_path="/home/user/ntl-cal/$month/$day"
+    fi
   else
-    echo "\e[32m$line"
+    echo "Invalid options"
   fi
-done <<< "$contents"
+  contents=$( /usr/bin/cat "$my_path" )
+  read_colorized "$contents"
+elif [[ $1 = "-m" ]]; then
+  if [[ $2 = "-d" && $3 != "" ]]; then
+    month=`date -d "$3" +%b`
+  else
+    month=`date +%b`
+  fi
+  my_path="/home/user/ntl-cal/$month/month.txt"
+  contents=$( /usr/bin/cat "$my_path" )
+  read_colorized "$contents"
+elif [[ $1 = "-md" && $2 != "" ]]; then
+  month=`date -d "$2" +%b`
+  my_path="/home/user/ntl-cal/$month/month.txt"
+  contents=$( /usr/bin/cat "$my_path" )
+  read_colorized "$contents"
+else
+  echo "ntl-cal: display holidays on a given date.
+options:
+  -d pick the date (accepts same options as gnu \`date\`)
+  -m show month-long holidays
+examples:
+  ntl-cal
+  ntl-cal -d 'tomorrow'
+  ntl-cal -m
+  ntl-cal -md '1 month'"
+fi
