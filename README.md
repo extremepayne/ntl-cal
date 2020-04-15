@@ -18,7 +18,9 @@ Run `ntl-cal -h` to see options.
 Scraped from: http://www.nationalcalendarapp.com/
 
 ## example
+(I aliased it to holiday because, while less unique, it's easier to type.)
 ![demo image](images/demo.png)
+Screenshot taken on Tilix using [powerlevel10k](https://github.com/romkatv/powerlevel10k) as prompt. Font is patched Melso from p10k. Colorscheme of my own making, not released (yet).
 
 ## Here's how I did it
 ```sh
