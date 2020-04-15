@@ -16,7 +16,7 @@ Run `ntl-cal -h` to see options.
 Scraped from: http://www.nationalcalendarapp.com/
 
 ## example
-
+![demo image](images/demo.png)
 
 ## Here's how I did it
 ```sh
