@@ -13,6 +13,7 @@ read_colorized () {
 if [[ $# -eq 0 ]]; then
   month=`date +%b`
   day=`date +%d`
+  day=$((10#$day))
   my_path="/home/user/ntl-cal/$month/$day"
   contents=$( /usr/bin/cat "$my_path" )
   read_colorized "$contents"
@@ -20,6 +21,7 @@ elif [[ $1 = "-d" ]]; then
   if [[ $2 != "" ]]; then
     month=`date -d "$2" +%b`
     day=`date -d "$2" +%d`
+    day=$((10#$day))
     if [[ $3 = "-m" ]]; then
       my_path="/home/user/ntl-cal/$month/month.txt"
     else
